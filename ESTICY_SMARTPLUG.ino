@@ -95,10 +95,9 @@ void loop() {
     digitalWrite(ledPin3, LOW);
   }
  
-  // Return the response
   client.println("HTTP/1.1 200 OK");
   client.println("Content-Type: text/html");
-  client.println(""); //  do not forget this one
+  client.println("");
   client.println(html);
   delay(1);
   Serial.println("Client disonnected");
