@@ -12,7 +12,7 @@ IPAddress gateway(192,168,43,1);
 
 IPAddress subnet(255,255,255,0);
 
-int ledPin1 = 13; // GPIO3
+int ledPin1 = 13; 
 int ledPin2 = 12; 
 int ledPin3 = 14;
 WiFiServer server(80);
@@ -31,15 +31,11 @@ void setup() {
   digitalWrite(ledPin2, LOW);
   digitalWrite(ledPin3, LOW);
 
-  
-  // Connect to WiFi network
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
 
-//  WiFi.config(staticIP, gateway, subnet);
-//  WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   WiFi.config(staticIP, gateway, subnet);
 
@@ -55,11 +51,9 @@ void setup() {
   Serial.println("STA Failed to configure");
 }
  
-  // Start the server
   server.begin();
   Serial.println("Server started");
  
-  // Print the IP address
   Serial.print("Use this URL to connect: ");
   Serial.print("http://");
   Serial.print(WiFi.localIP());
@@ -68,24 +62,20 @@ void setup() {
 }
  
 void loop() {
-  // Check if a client has connected
   WiFiClient client = server.available();
   if (!client) {
     return;
   }
  
-  // Wait until the client sends some data
   Serial.println("new client");
   while(!client.available()){
     delay(1);
   }
  
-  // Read the first line of the request
   String request = client.readStringUntil('\r');
   Serial.println(request);
   client.flush();
  
-  // Match the request
   if (request.indexOf("/LED1=ON") != -1)  {
     digitalWrite(ledPin1, HIGH);
   }
