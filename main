@@ -3,8 +3,8 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
  
-const char* ssid = "ESTICY";
-const char* password = "esticyesp";
+const char* ssid = "ESTICY";        //WIFI Name
+const char* password = "esticyesp"; //WIFI Password
 
 IPAddress staticIP(192,168,43,100);
 
